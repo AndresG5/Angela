@@ -1,0 +1,953 @@
+/* =========================================================
+   CARTA ESPECIAL
+   STYLE.CSS
+
+   Diseño mobile-first: la misma columna centrada y el mismo
+   orden de elementos se usan en cualquier tamaño de pantalla.
+   En pantallas grandes simplemente hay más aire alrededor —
+   no hay un layout de escritorio distinto que "se pierda" en
+   celular, porque el celular ES el diseño base.
+========================================================= */
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --background: #160f2c;
+    --background-soft: #1f1638;
+
+    --cream: #f7eee5;
+    --cream-soft: #d9c9c0;
+
+    --pink: #e8a7b7;
+    --pink-light: #f5cbd5;
+
+    --gold: #d8b27c;
+
+    --shadow: rgba(0, 0, 0, 0.45);
+
+    --font-title: "Cormorant Garamond", serif;
+    --font-body: "Montserrat", sans-serif;
+
+    --col-max: 600px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--background);
+    color: var(--cream);
+
+    font-family: var(--font-body);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   SELECCIÓN DE TEXTO
+========================================================= */
+
+::selection {
+    background: var(--pink);
+    color: #160d12;
+}
+
+
+/* =========================================================
+   PARTÍCULAS AMBIENTALES (flotan detrás de toda la carta)
+========================================================= */
+
+#particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1;
+
+    opacity: 0.5;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   BOTÓN VOLVER A LA APP
+========================================================= */
+
+.back-to-app {
+
+    position: fixed;
+
+    top: calc(20px + env(safe-area-inset-top, 0px));
+    left: calc(20px + env(safe-area-inset-left, 0px));
+
+    z-index: 1100;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(30, 20, 50, 0.55);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+
+    color: var(--cream-soft);
+    text-decoration: none;
+
+    backdrop-filter: blur(6px);
+
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+
+/* =========================================================
+   ICONOS SVG (reemplazan los caracteres de texto ✦ ♪ ←)
+========================================================= */
+
+.back-to-app svg {
+    width: 20px;
+    height: 20px;
+}
+
+.section-star svg,
+.music-icon svg,
+.floating-star svg {
+    width: 1em;
+    height: 1em;
+    display: block;
+}
+
+
+/* =========================================================
+   MAIN — contenedor general
+========================================================= */
+
+.main-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    opacity: 0;
+
+    transition: opacity 0.9s ease;
+}
+
+.main-content.show {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   BLOQUE — patrón compartido por todas las secciones
+========================================================= */
+
+.block {
+
+    position: relative;
+
+    max-width: var(--col-max);
+
+    margin: 0 auto;
+
+    padding: 72px 24px;
+
+    text-align: center;
+}
+
+.block::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 10%;
+    left: 50%;
+
+    width: 260px;
+    height: 260px;
+
+    transform: translateX(-50%);
+
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.14), transparent 70%);
+
+    filter: blur(40px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+.block-tag {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 22px;
+
+    padding: 5px 16px;
+
+    border: 1px solid rgba(216, 178, 124, 0.35);
+
+    border-radius: 999px;
+
+    color: var(--gold);
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    font-weight: 600;
+}
+
+.block-title {
+
+    font-family: var(--font-title);
+
+    font-size: clamp(32px, 8.5vw, 50px);
+
+    font-weight: 500;
+
+    line-height: 1.18;
+
+    margin-bottom: 22px;
+}
+
+.block-title em {
+
+    color: var(--pink);
+
+    font-style: italic;
+}
+
+.block-text {
+
+    color: var(--cream-soft);
+
+    font-family: var(--font-title);
+
+    font-size: clamp(17px, 4vw, 20px);
+
+    line-height: 1.75;
+
+    margin-bottom: 20px;
+}
+
+.block-text:last-child {
+    margin-bottom: 0;
+}
+
+.block-small {
+
+    color: var(--pink-light);
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 14px;
+}
+
+
+/* Divisor decorativo entre secciones */
+
+.section-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    max-width: 220px;
+
+    margin: 0 auto;
+
+    padding: 4px 0;
+
+    color: rgba(216, 178, 124, 0.5);
+
+    font-size: 14px;
+}
+
+.section-divider::before,
+.section-divider::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: linear-gradient(90deg, transparent, rgba(216, 178, 124, 0.35), transparent);
+}
+
+
+/* =========================================================
+   FOTO — una sola caja de foto, centrada, sin posicionamiento
+   absoluto. Las imágenes dentro siguen rotando solas (ver
+   startPhotoRotators en script.js) — eso no cambió, solo dónde
+   y cómo se muestran.
+========================================================= */
+
+.block-photo {
+
+    position: relative;
+
+    width: min(72vw, 300px);
+
+    aspect-ratio: 3 / 4;
+
+    margin: 34px auto;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+
+    background: var(--background-soft);
+}
+
+.block-photo img {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(0.88);
+}
+
+
+/* Contenedor de las dos capas que se funden entre sí */
+
+.block-photo .rotator,
+.filmstrip-item .rotator {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.rotator-layer {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(0.88);
+
+    opacity: 0;
+}
+
+.rotator-layer.is-active {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   FILMSTRIP — carrusel horizontal con scroll-snap para la
+   sección de recuerdos. Funciona igual (deslizar con el dedo)
+   en celular y con el mouse/trackpad en computadora: es el
+   mismo elemento en cualquier tamaño de pantalla.
+========================================================= */
+
+.filmstrip {
+
+    display: flex;
+
+    gap: 14px;
+
+    overflow-x: auto;
+
+    scroll-snap-type: x mandatory;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+
+    padding: 6px 6px 10px;
+
+    margin: 30px -6px;
+}
+
+.filmstrip::-webkit-scrollbar {
+    display: none;
+}
+
+.filmstrip-item {
+
+    flex: 0 0 auto;
+
+    scroll-snap-align: center;
+
+    width: min(62vw, 240px);
+
+    aspect-ratio: 3 / 4;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+
+    background: var(--background-soft);
+}
+
+.filmstrip-item:first-child {
+    margin-left: calc(50vw - min(62vw, 240px) / 2 - 24px);
+}
+
+.filmstrip-item:last-child {
+    margin-right: calc(50vw - min(62vw, 240px) / 2 - 24px);
+}
+
+.filmstrip-item img {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(0.88);
+}
+
+
+/* =========================================================
+   CARTA — mismo ancho de columna, con una tarjeta encima
+   para diferenciarla visualmente del resto.
+========================================================= */
+
+.letter-block {
+    padding-top: 56px;
+    padding-bottom: 56px;
+}
+
+.letter-card {
+
+    position: relative;
+
+    padding: 44px 26px;
+
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025));
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 26px;
+
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+
+    backdrop-filter: blur(14px);
+}
+
+.letter-label {
+
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: var(--gold);
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    font-weight: 600;
+}
+
+.letter-card .block-title {
+    font-size: clamp(46px, 15vw, 72px);
+    margin-bottom: 6px;
+}
+
+.letter-line {
+
+    width: 60px;
+
+    height: 2px;
+
+    margin: 18px auto 30px;
+
+    background: linear-gradient(90deg, transparent, var(--pink), transparent);
+}
+
+.letter-text {
+    text-align: left;
+}
+
+.letter-text p {
+
+    margin-bottom: 24px;
+
+    color: var(--cream-soft);
+
+    font-family: var(--font-title);
+
+    font-size: clamp(17px, 3.8vw, 20px);
+
+    line-height: 1.7;
+}
+
+.letter-text p:last-child {
+    margin-bottom: 0;
+}
+
+.letter-text p.letter-emphasis {
+
+    margin: 36px 0;
+
+    color: var(--pink);
+
+    font-size: clamp(28px, 8vw, 38px);
+
+    font-weight: 500;
+
+    line-height: 1.25;
+
+    text-align: center;
+}
+
+.letter-signature {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    margin-top: 40px;
+
+    text-align: right;
+}
+
+.letter-signature span {
+
+    color: var(--cream-soft);
+
+    font-size: 13px;
+}
+
+.letter-signature strong {
+
+    font-family: var(--font-title);
+
+    color: var(--pink);
+
+    font-size: 30px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final-block {
+    padding-bottom: 100px;
+}
+
+.section-star {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin: 22px auto 30px;
+
+    color: var(--gold);
+
+    font-size: 22px;
+
+    animation: starBeat 2.4s ease-in-out infinite;
+}
+
+@keyframes starBeat {
+
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.85;
+    }
+
+    50% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+}
+
+.final-message-strong {
+    color: var(--pink);
+    font-family: var(--font-title);
+    font-size: clamp(20px, 5.5vw, 24px);
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+
+/* =========================================================
+   VIDEO DEL RECUERDO — fijo hasta el final, en pausa con su
+   propia miniatura. El usuario tiene que tocar el botón de
+   play para que arranque (la música de fondo ya está sonando,
+   así que no autoplay, para no encimar los dos audios).
+   Si el archivo de video no existiera, este bloque completo
+   se oculta solo (ver prepareMemoryVideo en script.js).
+========================================================= */
+
+.memory-video {
+
+    position: relative;
+
+    width: min(74vw, 300px);
+
+    aspect-ratio: 9 / 16;
+
+    margin: 36px auto 8px;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+
+    background: #000;
+}
+
+.memory-video video {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.memory-video .play-btn {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    cursor: pointer;
+
+    background: rgba(10, 6, 20, 0.32);
+
+    color: #fff;
+
+    transition: opacity 0.35s ease, background 0.25s ease;
+}
+
+.memory-video .play-btn svg {
+
+    width: 25%;
+
+    height: auto;
+
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6));
+}
+
+.memory-video.is-playing .play-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BOTÓN DE MÚSICA
+========================================================= */
+
+.music-button {
+
+    position: fixed;
+
+    right: calc(20px + env(safe-area-inset-right, 0px));
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+
+    z-index: 1100;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    border-radius: 999px;
+
+    background: rgba(30, 20, 50, 0.55);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+
+    color: var(--cream-soft);
+
+    cursor: pointer;
+
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition: opacity 0.6s ease, transform 0.6s ease, background 0.25s ease;
+}
+
+.music-button.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.music-icon {
+    display: flex;
+    color: var(--pink);
+    font-size: 16px;
+}
+
+.music-text {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   REVELADO AL HACER SCROLL — un solo patrón genérico para
+   todos los bloques (antes había un patrón distinto por
+   sección, con transforms pensados para el layout viejo).
+========================================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    transition: opacity 1s ease, transform 1s cubic-bezier(.17,.67,.38,1);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   PARTÍCULAS GENERADAS POR JS
+========================================================= */
+
+.particle {
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: var(--pink-light);
+
+    box-shadow: 0 0 10px var(--pink);
+
+    opacity: 0;
+
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   ESTRELLAS GENERADAS POR JS
+========================================================= */
+
+.floating-star {
+
+    position: absolute;
+
+    color: rgba(216, 178, 124, 0.35);
+
+    font-size: 14px;
+
+    pointer-events: none;
+
+    animation: starFloat linear infinite;
+}
+
+@keyframes starFloat {
+
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.6;
+    }
+
+    80% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: translateY(-10vh) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   HOVER — SOLO PARA DISPOSITIVOS CON MOUSE/TRACKPAD
+   (evita que en celular un :hover se quede "pegado" tras tocar)
+========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .back-to-app:hover {
+        background: rgba(168, 85, 247, 0.25);
+        transform: scale(1.08);
+    }
+
+    .music-button:hover {
+        transform: translateY(-3px);
+        background: rgba(232, 167, 183, 0.12);
+    }
+
+    .filmstrip-item:hover .rotator-layer.is-active,
+    .block-photo:hover .rotator-layer.is-active {
+        transform: scale(1.04);
+    }
+
+    .memory-video .play-btn:hover {
+        background: rgba(10, 6, 20, 0.5);
+    }
+
+}
+
+.rotator-layer {
+    transition: opacity 1.4s ease, transform 0.6s ease;
+}
+
+
+/* =========================================================
+   PANTALLAS GRANDES — un poco más de aire, misma columna
+========================================================= */
+
+@media (min-width: 780px) {
+
+    :root {
+        --col-max: 640px;
+    }
+
+    .block {
+        padding: 110px 32px;
+    }
+
+    .letter-card {
+        padding: 64px 56px;
+    }
+
+    .block-photo {
+        width: min(40vw, 340px);
+    }
+
+    .filmstrip-item {
+        width: min(30vw, 260px);
+    }
+
+    .memory-video {
+        width: min(32vw, 320px);
+    }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+}
