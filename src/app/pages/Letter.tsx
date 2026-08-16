@@ -10,7 +10,7 @@ import { VincentDelivery } from "../components/VincentDelivery";
 import { getCoralineStep } from "../data/coraline";
 import { ArrowLeft, DoorOpen, DoorClosed, Lock, Eye, EyeOff } from "lucide-react";
 
-const PASSWORD = "PanzonaForever02";
+const PASSWORD = import.meta.env.VITE_SECRET_DOOR_PASSWORD ?? "";
 
 export default function Letter() {
   const navigate = useNavigate();

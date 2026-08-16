@@ -28,6 +28,10 @@ especial con contraseña.
 # Instalar dependencias
 npm install
 
+# Copiar el archivo de variables de entorno y poner la contraseña real
+cp .env.example .env
+# (edita .env y reemplaza el valor de VITE_SECRET_DOOR_PASSWORD)
+
 # Servidor de desarrollo
 npm run dev
 
