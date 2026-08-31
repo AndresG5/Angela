@@ -5,12 +5,12 @@ import { FloatingStars, CurvedSpiral } from "../components/BurtonDecorations";
 import { CoralinePanel } from "../components/CoralinePanel";
 import { PortalSequence } from "../components/PortalSequence";
 import { BlueDoor } from "../components/BlueDoor";
-import { ConstructionCurtain, isConstructionOver } from "../components/ConstructionCurtain";
+import { ConstructionCurtain, hasSeenDoorReveal } from "../components/ConstructionCurtain";
 import { VincentDelivery } from "../components/VincentDelivery";
 import { getCoralineStep } from "../data/coraline";
 import { ArrowLeft, DoorOpen, DoorClosed, Lock, Eye, EyeOff } from "lucide-react";
 
-const PASSWORD = import.meta.env.VITE_SECRET_DOOR_PASSWORD ?? "";
+const PASSWORD = "PanzonaForever02";
 
 export default function Letter() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function Letter() {
   const [unlocking, setUnlocking] = useState(false);
   const [wrongAttempts, setWrongAttempts] = useState(0);
   const [portalActive, setPortalActive] = useState(false);
-  const [showCurtain, setShowCurtain] = useState(() => !isConstructionOver());
+  const [showCurtain, setShowCurtain] = useState(() => !hasSeenDoorReveal());
   const [showVincentDelivery, setShowVincentDelivery] = useState(false);
   const shakeKey = useRef(0);
   const portalTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);

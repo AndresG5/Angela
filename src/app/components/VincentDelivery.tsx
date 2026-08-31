@@ -142,8 +142,10 @@ export function VincentDelivery({ onOpenLetter }: { onOpenLetter: () => void }) 
         }}
       >
         <p className="text-gray-100 text-xs italic leading-snug">
-          Tú debes ser Angela. Andrés me pidió entregarte esto. Espero
-          que te guste, aunque no hay ni un solo murciélago. Anda, tócala.
+          Angela, tardaste tanto que esto ya empezaba a sentirse como
+          una reliquia. Andrés me dejó esto para ti, con la condición
+          de que llegara a tus manos, así que toma antes de que empiece
+          a cobrarme intereses por la espera.
         </p>
       </motion.div>
 
