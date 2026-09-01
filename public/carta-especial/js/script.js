@@ -108,8 +108,8 @@ function revealLetter() {
     /*
         Intentamos reproducir la música. Como esta página se abrió
         con una navegación normal (no un click dentro de ella), es
-        muy probable que el navegador bloquee el autoplay — en ese
-        caso, Angela puede activarla a mano con el botón de música.
+        muy probable que el navegador bloquee el autoplay — sobre
+        todo en celular.
     */
 
     (async () => {
@@ -126,11 +126,60 @@ function revealLetter() {
 
         } catch (error) {
 
-            console.log("La música necesita activarse manualmente.");
+            console.log("Autoplay bloqueado. Se activará con el primer toque.");
+
+            enableMusicOnFirstInteraction();
 
         }
 
     })();
+
+}
+
+
+/*
+    Si el navegador bloqueó el autoplay, en vez de obligar a Angela a
+    encontrar y tocar el botón de música, aprovechamos el primer
+    toque/scroll/click que haga en cualquier parte de la página (algo
+    que va a pasar casi de inmediato, en cuanto empiece a leer) para
+    arrancar la música sola en ese momento — así, en la práctica, se
+    escucha "desde que entra".
+*/
+
+function enableMusicOnFirstInteraction() {
+
+    const events = ["touchstart", "pointerdown", "click", "scroll", "keydown"];
+
+    async function tryPlay() {
+
+        if (musicPlaying) return;
+
+        try {
+
+            backgroundMusic.volume = CONFIG.musicVolume;
+
+            await backgroundMusic.play();
+
+            musicPlaying = true;
+
+            updateMusicButton();
+
+        } catch (error) {
+
+            // Se queda esperando el siguiente intento de interacción.
+            return;
+
+        }
+
+        events.forEach(evt =>
+            window.removeEventListener(evt, tryPlay)
+        );
+
+    }
+
+    events.forEach(evt =>
+        window.addEventListener(evt, tryPlay, { passive: true, once: false })
+    );
 
 }
 

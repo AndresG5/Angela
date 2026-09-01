@@ -181,28 +181,23 @@ export function VincentDelivery({ onOpenLetter }: { onOpenLetter: () => void }) 
         />
       )}
 
-      {/* Punto sobre el sobre: aquí es donde se toca. Un poco más
-          grande que el sobre real (padding invisible) para que en
-          celular sea más fácil acertarle al primer toque. */}
+      {/* Punto sobre el sobre: aquí es donde se toca. Solo onClick —
+          en un <button> real, los navegadores móviles ya convierten
+          el toque en "click" de forma confiable; agregar también un
+          manejador de touchend (como se probó antes) puede terminar
+          reaccionando a toques en cualquier parte de la pantalla, no
+          solo aquí, así que se quitó. */}
       {hotspot && (
         <button
           type="button"
           onClick={onOpenLetter}
-          onTouchEnd={(e) => {
-            // En algunos navegadores móviles, el evento "click" tarda
-            // en llegar o a veces no se dispara a la primera. Al
-            // resolver la acción también en touchend, se abre desde
-            // el primer toque.
-            e.preventDefault();
-            onOpenLetter();
-          }}
           aria-label="Abrir la carta"
           className="absolute cursor-pointer bg-transparent border-0 p-0"
           style={{
-            left: hotspot.left - hotspot.width * 0.15,
-            top: hotspot.top - hotspot.height * 0.15,
-            width: hotspot.width * 1.3,
-            height: hotspot.height * 1.3,
+            left: hotspot.left - hotspot.width * 0.1,
+            top: hotspot.top - hotspot.height * 0.1,
+            width: hotspot.width * 1.2,
+            height: hotspot.height * 1.2,
             touchAction: "manipulation",
           }}
         />

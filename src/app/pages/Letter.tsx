@@ -59,7 +59,7 @@ export default function Letter() {
   const ambientIntensity = coralineStep?.intensity ?? 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#050914] via-[#0b1a3d] to-[#040711] p-4 overflow-x-hidden relative flex flex-col">
+    <div className="min-h-dvh bg-gradient-to-br from-[#050914] via-[#0b1a3d] to-[#040711] p-4 overflow-x-hidden relative flex flex-col">
       {/* Decoraciones — tema Coraline: noche azul profundo */}
       <FloatingStars className="absolute top-0 left-0 w-full h-64 opacity-25" />
       <CurvedSpiral className="absolute bottom-12 left-8 w-20 h-20 opacity-20" />
@@ -154,11 +154,12 @@ export default function Letter() {
                       if (error) setError(false);
                     }}
                     placeholder="Contraseña"
-                    className={`w-full bg-gray-900/60 border rounded-xl pl-10 pr-10 py-3.5 text-white text-sm outline-none transition-colors ${
+                    className={`w-full bg-gray-900/60 border rounded-xl pl-10 pr-10 py-3.5 text-white outline-none transition-colors ${
                       error
                         ? "border-red-500/60 focus:border-red-400"
                         : "border-blue-500/30 focus:border-blue-400"
                     }`}
+                    style={{ fontSize: "16px" }}
                   />
                   <button
                     type="button"
