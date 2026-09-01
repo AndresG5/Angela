@@ -15,11 +15,17 @@ import { ArrowLeft } from "lucide-react";
  * contenedor padre tiene un transform/animación activa que lo encoja
  * (eso era lo que dejaba franjas negras alrededor en computadora).
  *
- * El punto donde se puede tocar es "invisible" (no se ve ningún botón),
- * pero está calculado por JS para caer exactamente sobre el sobre sin
- * importar el tamaño de pantalla: la imagen se recorta distinto en cada
- * dispositivo por el `object-fit: cover`, así que el punto se recalcula
- * usando el mismo recorte que aplica el navegador.
+ * ── Sobre el tamaño de la pantalla en celular ──
+ * En vez de dibujar el contenedor con "100vw / 100dvh" (CSS) y luego
+ * calcular el punto del sobre con "window.innerWidth/innerHeight" (JS)
+ * por separado, ahora se mide el tamaño UNA sola vez con JS
+ * (usando visualViewport cuando existe, que es lo más preciso en
+ * celular) y ESE mismo número se usa tanto para dibujar el contenedor
+ * como para calcular dónde cae el sobre. Antes, si esos dos números no
+ * coincidían exactamente (algo común en celular cuando la barra de
+ * direcciones del navegador aparece/desaparece), la imagen se recortaba
+ * distinto a como se calculaba el punto del sobre, y por eso a veces
+ * había que tocar varias veces antes de que funcionara.
  */
 
 // Dimensiones reales del archivo de imagen
@@ -38,18 +44,25 @@ interface Hotspot {
   height: number;
 }
 
+function getViewportSize() {
+  const vv = typeof window !== "undefined" ? window.visualViewport : undefined;
+  return {
+    width: vv?.width ?? window.innerWidth,
+    height: vv?.height ?? window.innerHeight,
+  };
+}
+
 export function VincentDelivery({ onOpenLetter }: { onOpenLetter: () => void }) {
   const navigate = useNavigate();
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [viewport, setViewport] = useState(() => getViewportSize());
   const [hotspot, setHotspot] = useState<Hotspot | null>(null);
 
   useEffect(() => {
     function recompute() {
-      // Contra la ventana real, no contra un contenedor que podría
-      // haber quedado encogido.
-      const cw = window.innerWidth;
-      const ch = window.innerHeight;
+      const { width: cw, height: ch } = getViewportSize();
       if (!cw || !ch) return;
+
+      setViewport({ width: cw, height: ch });
 
       // Misma matemática que "object-fit: cover" con posición centrada:
       // la imagen se escala para cubrir el contenedor completo y el
@@ -71,15 +84,16 @@ export function VincentDelivery({ onOpenLetter }: { onOpenLetter: () => void }) 
     recompute();
     window.addEventListener("resize", recompute);
     window.addEventListener("orientationchange", recompute);
+    window.visualViewport?.addEventListener("resize", recompute);
     return () => {
       window.removeEventListener("resize", recompute);
       window.removeEventListener("orientationchange", recompute);
+      window.visualViewport?.removeEventListener("resize", recompute);
     };
   }, []);
 
   const scene = (
     <motion.div
-      ref={containerRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -88,8 +102,8 @@ export function VincentDelivery({ onOpenLetter }: { onOpenLetter: () => void }) 
         position: "fixed",
         top: 0,
         left: 0,
-        width: "100vw",
-        height: "100dvh",
+        width: viewport.width,
+        height: viewport.height,
         zIndex: 2147483000,
       }}
     >
@@ -167,18 +181,29 @@ export function VincentDelivery({ onOpenLetter }: { onOpenLetter: () => void }) 
         />
       )}
 
-      {/* Punto invisible sobre el sobre: aquí es donde se toca */}
+      {/* Punto sobre el sobre: aquí es donde se toca. Un poco más
+          grande que el sobre real (padding invisible) para que en
+          celular sea más fácil acertarle al primer toque. */}
       {hotspot && (
         <button
           type="button"
           onClick={onOpenLetter}
+          onTouchEnd={(e) => {
+            // En algunos navegadores móviles, el evento "click" tarda
+            // en llegar o a veces no se dispara a la primera. Al
+            // resolver la acción también en touchend, se abre desde
+            // el primer toque.
+            e.preventDefault();
+            onOpenLetter();
+          }}
           aria-label="Abrir la carta"
           className="absolute cursor-pointer bg-transparent border-0 p-0"
           style={{
-            left: hotspot.left,
-            top: hotspot.top,
-            width: hotspot.width,
-            height: hotspot.height,
+            left: hotspot.left - hotspot.width * 0.15,
+            top: hotspot.top - hotspot.height * 0.15,
+            width: hotspot.width * 1.3,
+            height: hotspot.height * 1.3,
+            touchAction: "manipulation",
           }}
         />
       )}

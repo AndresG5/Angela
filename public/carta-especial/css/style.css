@@ -726,9 +726,18 @@ body {
 
     align-items: center;
 
+    justify-content: center;
+
     gap: 8px;
 
     padding: 12px 18px;
+
+    /* Ancho fijo (no "auto"): al cambiar entre "Música" y "Sonando"
+       el botón no cambia de tamaño. Un elemento position:fixed que
+       cambia de tamaño mientras la persona está haciendo scroll es
+       una causa conocida de que el scroll se sienta trabado o se
+       detenga en algunos navegadores de celular. */
+    width: 118px;
 
     border-radius: 999px;
 

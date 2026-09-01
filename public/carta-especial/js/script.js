@@ -304,12 +304,18 @@ function prepareMemoryVideo() {
         wrapper.style.display = "";
     }
 
+    // "loadeddata" a veces nunca llega en celular porque el video
+    // usa preload="metadata" (para no gastar datos de más) y algunos
+    // navegadores móviles nunca avanzan más allá de la metadata hasta
+    // que el usuario le da play. "loadedmetadata" sí llega siempre
+    // que el archivo carga bien, así que es más confiable aquí.
+    video.addEventListener("loadedmetadata", reveal);
     video.addEventListener("loadeddata", reveal);
     video.addEventListener("error", () => {
         wrapper.style.display = "none";
     });
 
-    if (video.readyState >= 2) {
+    if (video.readyState >= 1) {
         reveal();
     }
 
