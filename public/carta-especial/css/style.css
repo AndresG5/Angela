@@ -49,6 +49,13 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+
+    /* Evita que un doble-toque accidental (por ejemplo, tocando dos
+       veces seguidas el botón de música sin querer) dispare el zoom
+       nativo de iOS y deje la página con el scroll "atorado" hasta
+       que se corrige el zoom a mano. Sigue permitiendo pellizcar con
+       dos dedos para hacer zoom manual si alguien lo necesita. */
+    touch-action: manipulation;
 }
 
 body {
@@ -716,6 +723,8 @@ body {
 .music-button {
 
     position: fixed;
+
+    touch-action: manipulation;
 
     right: calc(20px + env(safe-area-inset-right, 0px));
     bottom: calc(20px + env(safe-area-inset-bottom, 0px));

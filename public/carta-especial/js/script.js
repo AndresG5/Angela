@@ -112,27 +112,23 @@ function revealLetter() {
         todo en celular.
     */
 
-    (async () => {
+    backgroundMusic.volume = CONFIG.musicVolume;
 
-        try {
+    const playPromise = backgroundMusic.play();
 
-            backgroundMusic.volume = CONFIG.musicVolume;
+    if (playPromise && typeof playPromise.then === "function") {
 
-            await backgroundMusic.play();
+        playPromise
+            .then(() => {
+                musicPlaying = true;
+                updateMusicButton();
+            })
+            .catch(() => {
+                console.log("Autoplay bloqueado. Se activará con el primer toque.");
+                enableMusicOnFirstInteraction();
+            });
 
-            musicPlaying = true;
-
-            updateMusicButton();
-
-        } catch (error) {
-
-            console.log("Autoplay bloqueado. Se activará con el primer toque.");
-
-            enableMusicOnFirstInteraction();
-
-        }
-
-    })();
+    }
 
 }
 
@@ -140,40 +136,48 @@ function revealLetter() {
 /*
     Si el navegador bloqueó el autoplay, en vez de obligar a Angela a
     encontrar y tocar el botón de música, aprovechamos el primer
-    toque/scroll/click que haga en cualquier parte de la página (algo
-    que va a pasar casi de inmediato, en cuanto empiece a leer) para
-    arrancar la música sola en ese momento — así, en la práctica, se
-    escucha "desde que entra".
+    toque que haga en cualquier parte de la página (algo que va a
+    pasar casi de inmediato, en cuanto empiece a leer) para arrancar
+    la música sola en ese momento — así, en la práctica, se escucha
+    "desde que entra".
+
+    Importante: el play() se llama de forma DIRECTA y SÍNCRONA, como
+    primera instrucción dentro del propio manejador del evento — así
+    Safari lo reconoce como parte del mismo toque del usuario. Si en
+    vez de eso se envuelve en async/await (como estaba antes), Safari
+    a veces ya no lo considera "parte" del toque y lo vuelve a
+    bloquear, que es justo lo que estaba pasando.
 */
 
 function enableMusicOnFirstInteraction() {
 
-    const events = ["touchstart", "pointerdown", "click", "scroll", "keydown"];
+    const events = ["touchend", "touchstart", "pointerdown", "click", "keydown"];
 
-    async function tryPlay() {
+    function tryPlay() {
 
         if (musicPlaying) return;
 
-        try {
+        backgroundMusic.volume = CONFIG.musicVolume;
 
-            backgroundMusic.volume = CONFIG.musicVolume;
+        const playPromise = backgroundMusic.play();
 
-            await backgroundMusic.play();
+        if (!playPromise || typeof playPromise.then !== "function") return;
 
-            musicPlaying = true;
+        playPromise
+            .then(() => {
 
-            updateMusicButton();
+                musicPlaying = true;
 
-        } catch (error) {
+                updateMusicButton();
 
-            // Se queda esperando el siguiente intento de interacción.
-            return;
+                events.forEach(evt =>
+                    window.removeEventListener(evt, tryPlay)
+                );
 
-        }
-
-        events.forEach(evt =>
-            window.removeEventListener(evt, tryPlay)
-        );
+            })
+            .catch(() => {
+                // Se queda esperando el siguiente intento de interacción.
+            });
 
     }
 
