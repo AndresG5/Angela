@@ -1,0 +1,24 @@
+<svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg"><rect width="780" height="300" fill="white"/><g transform="translate(30,20) scale(0.7333333333333333)">
+  <rect width="300" height="300" fill="#faf6ee"/>
+  <circle cx="150" cy="150" r="130" fill="none" stroke="#d8cba8" stroke-width="2"/>
+  <path d="M150.0,150.0 Q174.8,181.4 229.9,179.1 Q189.1,141.9 150.0,150.0 Z" fill="#c9a86a" stroke="#7a6234" stroke-width="1.5" opacity="0.9"/><path d="M150.0,150.0 Q118.6,174.8 120.9,229.9 Q158.1,189.1 150.0,150.0 Z" fill="#c9a86a" stroke="#7a6234" stroke-width="1.5" opacity="0.9"/><path d="M150.0,150.0 Q125.2,118.6 70.1,120.9 Q110.9,158.1 150.0,150.0 Z" fill="#c9a86a" stroke="#7a6234" stroke-width="1.5" opacity="0.9"/><path d="M150.0,150.0 Q181.4,125.2 179.1,70.1 Q141.9,110.9 150.0,150.0 Z" fill="#c9a86a" stroke="#7a6234" stroke-width="1.5" opacity="0.9"/>
+  <circle cx="150" cy="150" r="16" fill="#7a6234"/>
+</g><text x="140.0" y="270" font-size="22" font-weight="bold" text-anchor="middle" font-family="Arial" fill="#222">A)</text><g transform="translate(280,20) scale(0.7333333333333333)">
+  <rect width="300" height="300" fill="#faf6ee"/>
+  <line x1="150" y1="60" x2="150" y2="230" stroke="#3f6b3f" stroke-width="4"/>
+  <path d="M150,230 C110,210 90,180 100,150 C120,160 145,190 150,230 Z" fill="#4d8a4d"/>
+  <path d="M150,230 C190,210 210,180 200,150 C180,160 155,190 150,230 Z" fill="#4d8a4d"/>
+  <g>
+    <ellipse cx="150" cy="95" rx="20" ry="34" fill="#d9738c"/>
+    <ellipse cx="121" cy="112" rx="20" ry="34" fill="#d9738c" transform="rotate(-55 121 112)"/>
+    <ellipse cx="179" cy="112" rx="20" ry="34" fill="#d9738c" transform="rotate(55 179 112)"/>
+    <ellipse cx="128" cy="70" rx="18" ry="30" fill="#e28ba0" transform="rotate(-25 128 70)"/>
+    <ellipse cx="172" cy="70" rx="18" ry="30" fill="#e28ba0" transform="rotate(25 172 70)"/>
+    <circle cx="150" cy="95" r="14" fill="#f4c453"/>
+  </g>
+</g><text x="390.0" y="270" font-size="22" font-weight="bold" text-anchor="middle" font-family="Arial" fill="#222">B)</text><g transform="translate(530,20) scale(0.7333333333333333)">
+  <rect width="300" height="300" fill="#eef1f5"/>
+  <circle cx="150" cy="150" r="130" fill="none" stroke="#8a94a3" stroke-width="2"/>
+  <path d="M150.0,30.0 L171.0,99.2 L234.9,65.1 L200.8,129.0 L270.0,150.0 L200.8,171.0 L234.9,234.9 L171.0,200.8 L150.0,270.0 L129.0,200.8 L65.1,234.9 L99.2,171.0 L30.0,150.0 L99.2,129.0 L65.1,65.1 L129.0,99.2 Z" fill="#5b6b82" stroke="#333e4d" stroke-width="1.5"/>
+  <circle cx="150" cy="150" r="30" fill="#eef1f5" stroke="#333e4d" stroke-width="1.5"/>
+</g><text x="640.0" y="270" font-size="22" font-weight="bold" text-anchor="middle" font-family="Arial" fill="#222">C)</text></svg>

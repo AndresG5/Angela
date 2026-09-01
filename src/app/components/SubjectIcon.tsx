@@ -5,6 +5,7 @@ import {
   BookOpenText,
   Ruler,
   GraduationCap,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
@@ -15,6 +16,7 @@ const ICONS: Record<string, LucideIcon> = {
   "book-open-text": BookOpenText,
   ruler: Ruler,
   "graduation-cap": GraduationCap,
+  sparkles: Sparkles,
 };
 
 /** Traduce la clave de ícono de una materia (guardada en los datos) a un ícono SVG. */

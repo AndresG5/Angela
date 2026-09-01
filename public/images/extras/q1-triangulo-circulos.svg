@@ -1,0 +1,39 @@
+<svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="triClip">
+      <polygon points="160,30 40,290 280,290" />
+    </clipPath>
+  </defs>
+
+  <!-- Triángulo con relleno gris (será la región sombreada visible) -->
+  <polygon points="160,30 40,290 280,290" fill="#b9bec6" stroke="#333" stroke-width="2" />
+
+  <!-- Los 4 círculos en blanco, recortados al triángulo -->
+  <g clip-path="url(#triClip)">
+    <circle cx="105" cy="235" r="55" fill="white" stroke="#333" stroke-width="1.5" />
+    <circle cx="215" cy="235" r="55" fill="white" stroke="#333" stroke-width="1.5" />
+    <circle cx="105" cy="125" r="55" fill="white" stroke="#333" stroke-width="1.5" />
+    <circle cx="215" cy="125" r="55" fill="white" stroke="#333" stroke-width="1.5" />
+    <!-- líneas diagonales punteadas de referencia -->
+    <line x1="50" y1="180" x2="270" y2="180" stroke="#999" stroke-width="1" stroke-dasharray="4 3" />
+    <line x1="105" y1="70" x2="105" y2="290" stroke="#999" stroke-width="1" stroke-dasharray="4 3" />
+    <line x1="215" y1="70" x2="215" y2="290" stroke="#999" stroke-width="1" stroke-dasharray="4 3" />
+  </g>
+
+  <polygon points="160,30 40,290 280,290" fill="none" stroke="#333" stroke-width="2" />
+
+  <!-- Cotas de medida -->
+  <line x1="25" y1="70" x2="25" y2="180" stroke="#333" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <line x1="25" y1="180" x2="25" y2="290" stroke="#333" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+  <text x="12" y="130" font-size="15" fill="#222" font-family="Arial">6</text>
+  <text x="12" y="240" font-size="15" fill="#222" font-family="Arial">6</text>
+
+  <line x1="40" y1="305" x2="280" y2="305" stroke="#333" stroke-width="1.5" />
+  <text x="150" y="318" font-size="15" fill="#222" font-family="Arial">6</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#333" />
+    </marker>
+  </defs>
+</svg>

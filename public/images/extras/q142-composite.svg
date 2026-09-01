@@ -1,0 +1,31 @@
+<svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg"><rect width="780" height="300" fill="white"/><g transform="translate(30,20) scale(0.7333333333333333)">
+  <rect width="300" height="300" fill="#eef1f5"/>
+  <path d="M150,50 C190,50 225,75 225,120 C225,175 190,220 150,255
+           C110,220 75,175 75,120 C75,75 110,50 150,50 Z"
+        fill="#7f93ab" stroke="#33475b" stroke-width="3"/>
+  <path d="M150,90 L150,215" stroke="#eef1f5" stroke-width="4"/>
+  <circle cx="150" cy="120" r="20" fill="#eef1f5" stroke="#33475b" stroke-width="2.5"/>
+  <path d="M115,175 C130,190 170,190 185,175" fill="none" stroke="#eef1f5" stroke-width="4" stroke-linecap="round"/>
+</g><text x="140.0" y="270" font-size="22" font-weight="bold" text-anchor="middle" font-family="Arial" fill="#222">A)</text><g transform="translate(280,20) scale(0.7333333333333333)">
+  <rect width="300" height="300" fill="#faf6ee"/>
+  <path d="M30,270 C60,220 40,180 80,150 C120,120 100,80 150,60 C200,45 210,90 260,70"
+        fill="none" stroke="#3f7a4d" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="80" cy="150" r="22" fill="#d9738c"/>
+  <circle cx="150" cy="60" r="18" fill="#e8a33f"/>
+  <circle cx="230" cy="95" r="15" fill="#d9738c"/>
+  <ellipse cx="55" cy="200" rx="16" ry="9" fill="#6ba36b" transform="rotate(-40 55 200)"/>
+  <ellipse cx="115" cy="105" rx="16" ry="9" fill="#6ba36b" transform="rotate(30 115 105)"/>
+  <ellipse cx="185" cy="55" rx="14" ry="8" fill="#6ba36b" transform="rotate(-15 185 55)"/>
+</g><text x="390.0" y="270" font-size="22" font-weight="bold" text-anchor="middle" font-family="Arial" fill="#222">B)</text><g transform="translate(530,20) scale(0.7333333333333333)">
+  <rect width="300" height="300" fill="#eef1f5"/>
+  <g stroke="#33475b" stroke-width="3" fill="none">
+    <rect x="60" y="60" width="180" height="180"/>
+    <rect x="100" y="100" width="100" height="100" transform="rotate(45 150 150)"/>
+    <circle cx="150" cy="150" r="55"/>
+  </g>
+  <circle cx="150" cy="150" r="20" fill="#7f93ab"/>
+  <circle cx="60" cy="60" r="8" fill="#7f93ab"/>
+  <circle cx="240" cy="60" r="8" fill="#7f93ab"/>
+  <circle cx="60" cy="240" r="8" fill="#7f93ab"/>
+  <circle cx="240" cy="240" r="8" fill="#7f93ab"/>
+</g><text x="640.0" y="270" font-size="22" font-weight="bold" text-anchor="middle" font-family="Arial" fill="#222">C)</text></svg>

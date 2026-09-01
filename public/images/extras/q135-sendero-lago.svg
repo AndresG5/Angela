@@ -1,0 +1,23 @@
+<svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lago: mancha irregular en la esquina superior derecha -->
+  <path d="M245,40 C270,30 300,35 310,55 C320,75 305,90 290,85
+           C300,100 285,115 265,110 C260,120 240,118 235,105
+           C220,100 218,80 232,70 C225,55 235,42 245,40 Z"
+        fill="#b9bec6" stroke="#333" stroke-width="1.5" />
+
+  <!-- Triángulo: vértice compartido (izquierda), sendero superior, ancho del lago -->
+  <polygon points="40,170 290,60 290,170" fill="none" stroke="#222" stroke-width="2.5" />
+
+  <!-- Ángulo recto en el vértice derecho -->
+  <rect x="278" y="148" width="12" height="12" fill="none" stroke="#222" stroke-width="1.5" />
+
+  <!-- Arco del ángulo de 42° -->
+  <path d="M75,170 A35,35 0 0 0 68,142" fill="none" stroke="#222" stroke-width="1.5" />
+  <text x="80" y="152" font-size="14" fill="#222" font-family="Arial">42°</text>
+
+  <!-- Etiqueta del sendero superior -->
+  <text x="120" y="105" font-size="15" fill="#222" font-family="Arial" font-weight="bold">3.8 km</text>
+
+  <!-- Punto de origen -->
+  <circle cx="40" cy="170" r="3" fill="#222" />
+</svg>

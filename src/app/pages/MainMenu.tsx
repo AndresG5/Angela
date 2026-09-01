@@ -9,6 +9,7 @@ import {
   buildGeneralSubject,
   GENERAL_EXAM_ID,
 } from "../data/questions";
+import { extrasSubject } from "../data/extrasQuestions";
 import { Moon, CurvedSpiral, FloatingStars } from "../components/BurtonDecorations";
 import { SubjectIcon } from "../components/SubjectIcon";
 import { ConfirmDialog } from "../components/ConfirmDialog";
@@ -27,6 +28,7 @@ import {
   RotateCcw,
   GraduationCap,
   DoorClosed,
+  Sparkles,
   Moon as MoonIcon,
 } from "lucide-react";
 
@@ -210,6 +212,95 @@ export default function MainMenu() {
                   >
                     <GraduationCap size={17} />
                     {hasAttempts ? "Nuevo intento" : "Comenzar examen general"}
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          );
+        })()}
+
+        {/* Extras — preguntas reales que sí vinieron en el examen,
+            aparte de las 5 materias normales */}
+        {(() => {
+          const ep = allProgress.find((p) => p.subjectId === extrasSubject.id);
+          const hasAttempts = (ep?.attempts ?? 0) > 0;
+          const bestScore = ep?.bestScore ?? 0;
+          const inProgress = findActiveSubjectId(extrasSubject.id);
+          return (
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 180, delay: 0.08 }}
+              className="relative rounded-3xl overflow-hidden mb-6"
+              style={{
+                backgroundColor: extrasSubject.color + "18",
+                border: `2px solid ${extrasSubject.color}55`,
+                boxShadow: `0 6px 0 ${extrasSubject.color}35, 0 10px 24px rgba(0,0,0,0.4)`,
+              }}
+            >
+              <div className="p-5 relative z-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: extrasSubject.color + "22" }}
+                  >
+                    <SubjectIcon icon={extrasSubject.icon} size={28} className="text-pink-200" />
+                  </div>
+                  <div className="flex-1">
+                    <h2
+                      className="text-2xl text-white font-bold"
+                      style={{ textShadow: "1px 1px 4px rgba(0,0,0,0.5)" }}
+                    >
+                      {extrasSubject.name}
+                    </h2>
+                    <p className="text-purple-300/70 text-sm">
+                      {extrasSubject.questions.length} preguntas · reactivos que sí vinieron en tu examen real
+                    </p>
+                  </div>
+                  {hasAttempts && (
+                    <div className="text-right flex-shrink-0">
+                      <div className="text-xs text-purple-300/60 mb-0.5">Mejor</div>
+                      <div className="text-2xl font-extrabold" style={{ color: extrasSubject.color }}>
+                        {bestScore}%
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {inProgress ? (
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => handleStartExam(extrasSubject.id)}
+                      className="flex items-center justify-center gap-2 py-3 rounded-2xl text-white font-bold text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+                      style={{
+                        backgroundColor: extrasSubject.color + "cc",
+                        border: `2px solid ${extrasSubject.color}`,
+                        boxShadow: `0 4px 0 ${extrasSubject.color}60`,
+                      }}
+                    >
+                      <Play size={17} />
+                      Continuar
+                    </button>
+                    <button
+                      onClick={() => handleRestartExam(extrasSubject.id)}
+                      className="flex items-center justify-center gap-2 py-3 rounded-2xl text-purple-200 font-bold text-sm bg-gray-800/50 border border-purple-500/25 hover:bg-gray-700/50 transition-all"
+                    >
+                      <RotateCcw size={15} />
+                      Empezar de nuevo
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => handleStartExam(extrasSubject.id)}
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-white font-bold text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+                    style={{
+                      backgroundColor: extrasSubject.color + "cc",
+                      border: `2px solid ${extrasSubject.color}`,
+                      boxShadow: `0 4px 0 ${extrasSubject.color}60`,
+                    }}
+                  >
+                    <Sparkles size={17} />
+                    {hasAttempts ? "Nuevo intento" : "Ver Extras"}
                   </button>
                 )}
               </div>

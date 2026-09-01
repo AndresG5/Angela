@@ -1,3 +1,4 @@
+import { extrasSubject } from "./extrasQuestions";
 // ─────────────────────────────────────────────
 //  Tipos base
 // ─────────────────────────────────────────────
@@ -21,6 +22,14 @@ export interface Question {
   explanation: string;
   hasImages?: boolean;
   imageNums?: number[];
+  /** Prefijo de ruta para las imágenes de opciones (hasImages).
+   *  Por defecto usa las gráficas de Aritmética ya existentes. */
+  imageBasePath?: string;
+  /** Extensión de archivo para las imágenes de opciones (por defecto "png") */
+  imageExt?: string;
+  /** Ilustración que acompaña el enunciado de la pregunta (no las opciones) */
+  questionImage?: string;
+  questionImageAlt?: string;
   tableData?: TableData;
   /** Texto de lectura que debe mostrarse SIEMPRE arriba de esta pregunta */
   passage?: string;
@@ -1569,6 +1578,7 @@ export function buildGeneralSubject(): Subject {
 export function resolveSubject(id: string | undefined): Subject | undefined {
   if (!id) return undefined;
   if (id === GENERAL_EXAM_ID) return buildGeneralSubject();
+  if (id === extrasSubject.id) return extrasSubject;
   return subjects.find((s) => s.id === id);
 }
 

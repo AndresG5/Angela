@@ -1,0 +1,26 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Círculo -->
+  <circle cx="150" cy="150" r="120" fill="#c7ccd3" stroke="#333" stroke-width="2" />
+
+  <!-- Cuadrado inscrito (blanco de base) -->
+  <polygon points="150,30 270,150 150,270 30,150" fill="white" stroke="#333" stroke-width="1.5" />
+
+  <!-- Patrón interno: 8 triángulos alternados (diagonales + líneas medias) -->
+  <g stroke="#333" stroke-width="1.2">
+    <line x1="150" y1="30" x2="150" y2="270" />
+    <line x1="30" y1="150" x2="270" y2="150" />
+    <line x1="150" y1="30" x2="270" y2="150" />
+    <line x1="270" y1="150" x2="150" y2="270" />
+    <line x1="150" y1="270" x2="30" y2="150" />
+    <line x1="30" y1="150" x2="150" y2="30" />
+  </g>
+
+  <!-- Triángulos alternos sombreados (patrón tipo molinete) -->
+  <polygon points="150,150 150,30 90,90" fill="#c7ccd3" />
+  <polygon points="150,150 210,90 270,150" fill="#c7ccd3" />
+  <polygon points="150,150 210,210 150,270" fill="#c7ccd3" />
+  <polygon points="150,150 90,210 30,150" fill="#c7ccd3" />
+
+  <polygon points="150,30 270,150 150,270 30,150" fill="none" stroke="#333" stroke-width="1.5" />
+  <circle cx="150" cy="150" r="120" fill="none" stroke="#333" stroke-width="2" />
+</svg>

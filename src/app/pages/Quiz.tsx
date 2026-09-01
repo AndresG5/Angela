@@ -332,6 +332,8 @@ export default function Quiz() {
 
     if (isImg) {
       const imgNum = currentQuestion.shuffledImageNums?.[displayIndex] ?? displayIndex + 1;
+      const basePath = currentQuestion.imageBasePath ?? "/images/Aritmetica_Grafica";
+      const ext = currentQuestion.imageExt ?? "png";
       return (
         <motion.button
           key={displayIndex}
@@ -349,7 +351,7 @@ export default function Quiz() {
             {showWrong && <XCircle className="text-red-400" size={20} />}
           </div>
           <img
-            src={`/images/Aritmetica_Grafica${imgNum}.png`}
+            src={`${basePath}${imgNum}.${ext}`}
             alt={`Gráfica ${label}`}
             className="w-full max-w-xs mx-auto rounded-lg"
             style={{ maxHeight: "180px", objectFit: "contain" }}
@@ -466,6 +468,18 @@ export default function Quiz() {
             <p className="text-white text-base md:text-lg leading-relaxed mb-3 whitespace-pre-line">
               {currentQuestion.question}
             </p>
+
+            {/* Ilustración del enunciado (diagramas, gráficas, etc.) */}
+            {currentQuestion.questionImage && (
+              <div className="mb-4 rounded-2xl overflow-hidden bg-white/95 p-3 flex justify-center">
+                <img
+                  src={currentQuestion.questionImage}
+                  alt={currentQuestion.questionImageAlt ?? "Ilustración de la pregunta"}
+                  className="max-w-full"
+                  style={{ maxHeight: "260px", objectFit: "contain" }}
+                />
+              </div>
+            )}
 
             {/* Tabla de datos si la pregunta la requiere */}
             {currentQuestion.tableData && (

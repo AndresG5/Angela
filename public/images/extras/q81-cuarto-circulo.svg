@@ -1,0 +1,20 @@
+<svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Círculo -->
+  <circle cx="150" cy="150" r="120" fill="none" stroke="#333" stroke-width="2" />
+
+  <!-- Cuadrado en el cuadrante superior derecho -->
+  <rect x="150" y="30" width="120" height="120" fill="none" stroke="#333" stroke-width="2" />
+
+  <!-- Región sombreada: cuarto de círculo dentro del cuadrado -->
+  <path d="M270,30 A120,120 0 0 1 150,150 L270,150 Z" fill="#8a8f96" stroke="#333" stroke-width="1.5" />
+
+  <!-- Cota de medida "20 m" en el lado derecho del cuadrado -->
+  <line x1="290" y1="30" x2="290" y2="150" stroke="#333" stroke-width="1.5" marker-start="url(#arrowQ81)" marker-end="url(#arrowQ81)" />
+  <text x="296" y="95" font-size="15" fill="#222" font-family="Arial">20 m</text>
+
+  <defs>
+    <marker id="arrowQ81" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#333" />
+    </marker>
+  </defs>
+</svg>
