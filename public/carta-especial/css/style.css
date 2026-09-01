@@ -120,13 +120,18 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(30, 20, 50, 0.55);
+    background: rgba(30, 20, 50, 0.78);
     border: 1px solid rgba(168, 85, 247, 0.3);
 
     color: var(--cream-soft);
     text-decoration: none;
 
-    backdrop-filter: blur(6px);
+    /* Sin backdrop-filter aquí a propósito: el desenfoque en vivo
+       sobre un elemento "fixed" es muy pesado para el navegador de
+       iPhone mientras hay scroll (tiene que recalcularlo en cada
+       cuadro) y puede sentirse como que la página "se traba". En vez
+       de blur, se usa un fondo un poco más opaco (arriba) para que
+       siga viéndose bien sin ese costo. */
 
     transition: background 0.25s ease, transform 0.25s ease;
 }
@@ -750,14 +755,15 @@ body {
 
     border-radius: 999px;
 
-    background: rgba(30, 20, 50, 0.55);
+    background: rgba(30, 20, 50, 0.78);
     border: 1px solid rgba(168, 85, 247, 0.3);
 
     color: var(--cream-soft);
 
     cursor: pointer;
 
-    backdrop-filter: blur(6px);
+    /* Ver la nota en .back-to-app: sin backdrop-filter a propósito,
+       por el costo que tiene en celular mientras hay scroll. */
 
     opacity: 0;
 

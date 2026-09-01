@@ -23,7 +23,7 @@ const particlesContainer = document.getElementById("particles");
 const CONFIG = {
 
     // Menos partículas en celular para que la animación se sienta fluida
-    particles: window.innerWidth < 600 ? 20 : 45,
+    particles: window.innerWidth < 600 ? 14 : 45,
 
     stars: 15,
 
